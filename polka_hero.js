@@ -14,18 +14,31 @@ Array.prototype.car = function() {
 	}
 	return this[0];
 }
+var ph_animation_options = {duration: 0.4, queue: {position: 'end', scope: 'polka_hero'}};
 var PolkaHero = Class.create({
 	initialize: function(element) {
-		Effect.Queues.get('polka_hero').interval = 100;
-		this.animation_options = {duration: .5, queue: {position: 'end', scope: 'polka_hero'}};
 		this.element = element;
 		this.squeezeboxes = element.select('.squeezebox');
 		this.paragraphs = element.select('p');
 	},
 	first_cycle: function() {
-		this.paragraphs.without(this.paragraphs.first()).each(function(p) {
-			Effect.BlindUp(p, this.animation_options);
+		this.paragraphs.cdr().each(function(p) {
+			p.hide();
 		});
 		
+		var delta = 1; //time between shifts
+		var paras = this.paragraphs;
+		var count = paras.length;
+		var i = 0;
+		new PeriodicalExecuter(function(pe) {
+			var hide_me = i;
+			var show_me = (i+1) % count;
+			Effect.BlindDown(paras[hide_me], {duration: 0.4});
+			Effect.BlindUp(paras[show_me], {duration: 0.4});
+			i++;
+			if (i == count) {
+				pe.stop();
+			}
+		}, 2);
 	}
-})
+});
