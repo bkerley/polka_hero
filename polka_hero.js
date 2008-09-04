@@ -33,8 +33,8 @@ var PolkaHero = Class.create({
 		new PeriodicalExecuter(function(pe) {
 			var hide_me = i;
 			var show_me = (i+1) % count;
-			Effect.BlindDown(paras[hide_me], {duration: 0.4});
-			Effect.BlindUp(paras[show_me], {duration: 0.4});
+			Effect.BlindUp(paras[hide_me], {duration: 0.4});
+			Effect.BlindDown(paras[show_me], {duration: 0.4});
 			i++;
 			if (i == count) {
 				pe.stop();
