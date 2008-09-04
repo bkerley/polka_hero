@@ -19,7 +19,7 @@ var PolkaHero = Class.create({
 	initialize: function(element) {
 		this.element = element;
 		this.squeezeboxes = element.select('.squeezebox');
-		this.paragraphs = element.select('p');
+		this.paragraphs = element.select('div.sbody');
 	},
 	first_cycle: function() {
 		this.paragraphs.cdr().each(function(p) {

@@ -1,5 +1,11 @@
-div#accordions div.squeezebox h1 {
+div.squeezebox h1 {
 	width: 20em;
 	background-color: #aaf;
 	font-size: 14pt;
+	margin: 0;
+	padding: 0;
+}
+div.squeezebox p {
+	margin: 0;
+	padding: 0;
 }
