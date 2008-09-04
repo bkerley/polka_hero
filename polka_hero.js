@@ -22,9 +22,7 @@ var PolkaHero = Class.create({
 		this.paragraphs = element.select('div.sbody');
 	},
 	first_cycle: function() {
-		this.paragraphs.cdr().each(function(p) {
-			p.hide();
-		});
+		Effect.BlindDown(this.paragraphs.car(), ph_animation_options);
 		
 		var delta = 1; //time between shifts
 		var paras = this.paragraphs;
