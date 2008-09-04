@@ -20,6 +20,7 @@ var PolkaHero = Class.create({
 		this.element = element;
 		this.squeezeboxes = element.select('.squeezebox');
 		this.paragraphs = element.select('div.sbody');
+		this.selectors = element.select('h1');
 		
 		this.first_cycle();
 	},
@@ -40,5 +41,13 @@ var PolkaHero = Class.create({
 				pe.stop();
 			}
 		}, 2);
+	},
+	bind_events: function() {
+		var seles = this.selectors;
+		var paras
+		for(var i = 0; i < seles.length; i++) {
+			var hide_these = paras.without(paras[i]);
+			var show_this = seles[i];
+		}
 	}
 });
