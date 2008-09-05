@@ -69,6 +69,11 @@
 		</div>
 	</div>
 	<script type="text/javascript" charset="utf-8">
-		var ph = new PolkaHero($('accordions'));
+		var ph_opts = {
+			animation: {duration: 0.3},
+			shown_image: 'images/colintalk-23x32.png',
+			hidden_image: 'images/colin-23x32.png'
+		}
+		var ph = new PolkaHero($('accordions'), ph_opts);
 	</script>
 </html>

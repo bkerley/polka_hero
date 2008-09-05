@@ -4,11 +4,8 @@ Array.prototype.cdr = function() {
 Array.prototype.car = function() {
 	return this[0];
 }
-var ph_animation_options = {duration: 0.3};
-var shown_image = 'images/colintalk-23x32.png';
-var hidden_image= 'images/colin-23x32.png';
 var PolkaHero = Class.create({
-	initialize: function(element) {
+	initialize: function(element, options) {
 		this.element = element;
 		this.squeezeboxes = element.select('.squeezebox');
 		this.squeezeboxes.each(function(sb) {
@@ -19,15 +16,15 @@ var PolkaHero = Class.create({
 			sb.hidden = true;
 			sb.ph_hide = function() {
 				if (sb.hidden) return;
-				Effect.BlindUp(sb.para, ph_animation_options);
+				Effect.BlindUp(sb.para, options.animation);
 				sb.hidden = true;
-				sb.img.src = hidden_image;
+				sb.img.src = options.hidden_image;
 			};
 			sb.ph_show = function() {
 				if (!sb.hidden) return;
-				Effect.BlindDown(sb.para, ph_animation_options);
+				Effect.BlindDown(sb.para, options.animation);
 				sb.hidden = false;
-				sb.img.src = shown_image;
+				sb.img.src = options.shown_image;
 			};
 		})
 		
