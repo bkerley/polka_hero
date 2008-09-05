@@ -29,25 +29,27 @@ var PolkaHero = Class.create({
 		})
 		
 		this.first_cycle();
-		this.bind_events();
 	},
 	first_cycle: function() {
 		var sbs = this.squeezeboxes;
 		var count = sbs.length;
 		var i = 0;
+		var myself = this;
 		
 		sbs.car().ph_show();
 		
 		new PeriodicalExecuter(function(pe) {
 			var hide_me = i;
 			var show_me = (i+1) % count;
+			if (i == count) {
+				pe.stop();
+				myself.bind_events();
+				return;
+			}
 			sbs[hide_me].ph_hide();
 			sbs[show_me].ph_show();
 			i++;
-			if (i == count) {
-				pe.stop();
-			}
-		}, 2);
+		}, 1);
 	},
 	bind_events: function() {
 		var sbs = this.squeezeboxes;
