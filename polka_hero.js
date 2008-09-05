@@ -5,27 +5,50 @@ Array.prototype.car = function() {
 	return this[0];
 }
 var ph_animation_options = {duration: 0.4};
+var shown_image = '/images/colintalk-23x32.png';
+var hidden_image= '/images/colin-23x32.png';
 var PolkaHero = Class.create({
 	initialize: function(element) {
 		this.element = element;
 		this.squeezeboxes = element.select('.squeezebox');
-		this.paragraphs = element.select('div.sbody');
-		this.selectors = element.select('h1');
+		this.squeezeboxes.each(function(sb) {
+			sb.para = sb.select('div.sbody')[0];
+			sb.sel = sb.select('h1')[0];
+			sb.img = sb.select('h1 img')[0];
+		})
+		this.paragraphs.each(function(pp) {
+			pp.hidden = true;
+			pp.image = pp.select("h1 img")[0];
+			pp.ph_hide = function() {
+				if (pp.hidden) return;
+				Effect.BlindUp(pp, ph_animation_options);
+				pp.hidden = true;
+				pp.image.src = hidden_image;
+			};
+			pp.ph_show = function() {
+				if (!pp.hidden) return;
+				Effect.BlindDown(pp, ph_animation_options);
+				pp.hidden = false;
+				pp.image.src = shown_image;
+			};
+			new Effect.Highlight(pp);
+		});
 		
 		this.first_cycle();
 		this.bind_events();
 	},
 	first_cycle: function() {
-		Effect.BlindDown(this.paragraphs.car(), ph_animation_options);
-		
 		var paras = this.paragraphs;
 		var count = paras.length;
 		var i = 0;
+		
+		paras.car().ph_show();
+		
 		new PeriodicalExecuter(function(pe) {
 			var hide_me = i;
 			var show_me = (i+1) % count;
-			Effect.BlindUp(paras[hide_me], ph_animation_options);
-			Effect.BlindDown(paras[show_me], ph_animation_options);
+			paras[hide_me].ph_hide();
+			paras[show_me].ph_show();
 			i++;
 			if (i == count) {
 				pe.stop();
