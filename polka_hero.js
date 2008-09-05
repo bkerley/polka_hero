@@ -27,7 +27,6 @@ var PolkaHero = Class.create({
 	first_cycle: function() {
 		Effect.BlindDown(this.paragraphs.car(), ph_animation_options);
 		
-		var delta = 1; //time between shifts
 		var paras = this.paragraphs;
 		var count = paras.length;
 		var i = 0;
