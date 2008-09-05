@@ -4,6 +4,7 @@ div.squeezebox h1 {
 	font-size: 14pt;
 	margin: 0;
 	padding: 0;
+	border-bottom: 1px solid black;
 }
 div.squeezebox div.sbody {
 	height: 120px;
