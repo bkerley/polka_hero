@@ -1,17 +1,7 @@
 Array.prototype.cdr = function() {
-	var cdr_out = new Array();
-	if (this.length < 2) {
-		return null;
-	}
-  for (var i = 1, length = this.length; i < length; i++)
-    cdr_out[i-1] = this[i];
-	
-	return cdr_out;
+	return self.slice(1);
 };
 Array.prototype.car = function() {
-	if (this.length < 1) {
-		return null;
-	}
 	return this[0];
 }
 var ph_animation_options = {duration: 0.4};
