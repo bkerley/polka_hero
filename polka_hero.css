@@ -1,11 +1,20 @@
 div.squeezebox h1 {
-	width: 20em;
+	width: 30em;
 	background-color: #aaf;
 	font-size: 14pt;
 	margin: 0;
 	padding: 0;
 }
-div.squeezebox p {
-	margin: 0;
-	padding: 0;
+div.squeezebox div.sbody {
+	height: 120px;
+	width: 30em;
+}
+
+img.display {
+	float: left;
+	padding-right: 1em;
+}
+
+div.squeezebox form {
+	font-size: 8pt;
 }
