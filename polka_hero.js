@@ -13,6 +13,7 @@ var PolkaHero = Class.create({
 		this.selectors = element.select('h1');
 		
 		this.first_cycle();
+		this.bind_events();
 	},
 	first_cycle: function() {
 		Effect.BlindDown(this.paragraphs.car(), ph_animation_options);
@@ -33,10 +34,19 @@ var PolkaHero = Class.create({
 	},
 	bind_events: function() {
 		var seles = this.selectors;
-		var paras
+		var paras = this.paragraphs;
 		for(var i = 0; i < seles.length; i++) {
-			var hide_these = paras.without(paras[i]);
-			var show_this = seles[i];
+			var clicking = seles[i];
+			clicking._hides_these = paras.without(paras[i]);
+			clicking._shows_this = paras[i];
+			
+			var like_this = function(event) {
+				var e = event.element();
+				e._hides_these.invoke('hide');
+				e._shows_this.show();
+			}
+			
+			clicking.observe('click', like_this);
 		}
 	}
 });
