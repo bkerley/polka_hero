@@ -61,7 +61,7 @@ var PolkaHero = Class.create({
 			
 			var like_this = function(event) {
 				var e = event.element();
-				if (Prototype.Browser.IE && e.tagName == 'IMG') {
+				if (e.tagName == 'IMG') {
 					e = e.parentNode;
 				}
 				e._hides_these.invoke('ph_hide');
