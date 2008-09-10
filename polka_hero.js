@@ -1,9 +1,3 @@
-Array.prototype.cdr = function() {
-	return self.slice(1);
-};
-Array.prototype.car = function() {
-	return this[0];
-}
 var PolkaHero = Class.create({
 	initialize: function(element, options) {
 		this.element = element;
@@ -36,7 +30,7 @@ var PolkaHero = Class.create({
 		var i = 0;
 		var myself = this;
 		
-		sbs.car().ph_show();
+		sbs[0].ph_show();
 		
 		new PeriodicalExecuter(function(pe) {
 			var hide_me = i;
