@@ -22,7 +22,13 @@ var PolkaHero = Class.create({
 			};
 		})
 		
-		this.first_cycle();
+		if (options.first_cycle) {
+			this.first_cycle();
+		} else {
+			this.bind_events();
+			this.squeezeboxes[0].ph_show();
+		}
+		
 	},
 	first_cycle: function() {
 		var sbs = this.squeezeboxes;
