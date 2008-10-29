@@ -2,6 +2,7 @@ var PolkaHero = Class.create({
 	initialize: function(element, options) {
 		this.element = element;
 		this.squeezeboxes = element.select('.squeezebox');
+		this.action_event = options.action_event || 'click';
 		this.squeezeboxes.each(function(sb) {
 			sb.para = sb.select('div.sbody')[0];
 			sb.sel = sb.select('h1')[0];
@@ -72,7 +73,7 @@ var PolkaHero = Class.create({
 				e._shows_this.ph_show();
 			}
 			
-			clicking.observe('click', like_this);
+			clicking.observe(this.action_event, like_this);
 		}
 	}
 });
