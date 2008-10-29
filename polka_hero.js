@@ -3,6 +3,8 @@ var PolkaHero = Class.create({
 		this.element = element;
 		this.squeezeboxes = element.select('.squeezebox');
 		this.action_event = options.action_event || 'click';
+		this.active = false;
+		this.animation = options.animation;
 		this.squeezeboxes.each(function(sb) {
 			sb.para = sb.select('div.sbody')[0];
 			sb.sel = sb.select('h1')[0];
@@ -58,6 +60,7 @@ var PolkaHero = Class.create({
 	},
 	bind_events: function() {
 		var sbs = this.squeezeboxes;
+		var myself = this;
 		
 		for(var i = 0; i < sbs.length; i++) {
 			var clicking = sbs[i].sel;
@@ -65,12 +68,16 @@ var PolkaHero = Class.create({
 			clicking._shows_this = sbs[i];
 			
 			var like_this = function(event) {
+			  if (myself.active) return;
+			  
+			  myself.active = true;
 				var e = event.element();
 				if (e.tagName == 'IMG') {
 					e = e.parentNode;
 				}
 				e._hides_these.invoke('ph_hide');
 				e._shows_this.ph_show();
+				window.setTimeout(function(){myself.active = false;}, myself.animation.duration * 1000);
 			}
 			
 			clicking.observe(this.action_event, like_this);
