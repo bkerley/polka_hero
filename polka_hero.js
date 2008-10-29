@@ -7,6 +7,10 @@ var PolkaHero = Class.create({
 			sb.sel = sb.select('h1')[0];
 			sb.img = sb.select('h1 img')[0];
 			
+			if (options.hidden_image == null || options.shown_image == null) {
+			  sb.img = {src: null}
+			}
+			
 			sb.hidden = true;
 			sb.ph_hide = function() {
 				if (sb.hidden) return;
